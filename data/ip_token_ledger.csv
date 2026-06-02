@@ -1,0 +1,201 @@
+clinic_id,tokens_awarded,shapley_score,volume_score,quality_score,rarity_score,n_samples,local_accuracy,local_auc,round,clinic_name
+0,38.5835,0.15762,1.0,0.5447,0.1911,124,0.4062,0.6667,1,Kisumu Lakeside (Kenya)
+1,32.4378,0.068722,1.0,0.4876,0.2,124,0.4688,0.4392,1,Northern Uganda Regional
+2,35.7537,0.095895,1.0,0.6,0.2,124,1.0,0.5,1,Lagos Teaching Hospital (Nigeria)
+3,35.7537,0.095895,1.0,0.6,0.2,124,1.0,0.5,1,Upper West Ghana District
+4,33.7688,0.095895,1.0,0.4303,0.3122,124,0.4062,0.3806,1,Kigali Reference (Rwanda)
+5,35.7537,0.095895,1.0,0.6,0.2,124,1.0,0.5,1,Lindi District (Tanzania)
+6,35.0087,0.102396,1.0,0.5699,0.0633,124,0.75,0.5747,1,Lusaka District (Zambia)
+7,35.7537,0.095895,1.0,0.6,0.2,124,1.0,0.5,1,Dakar Outpost (Senegal)
+8,35.7537,0.095895,1.0,0.6,0.2,124,1.0,0.5,1,Oromia Regional (Ethiopia)
+9,35.7537,0.095895,1.0,0.6,0.2,124,1.0,0.5,1,Nampula Province (Mozambique)
+0,38.3412,0.155031,1.0,0.5389,0.1911,124,0.4688,0.5675,2,Kisumu Lakeside (Kenya)
+1,34.9822,0.098565,1.0,0.5379,0.2,124,0.4375,0.6118,2,Northern Uganda Regional
+2,36.2118,0.103531,1.0,0.6,0.2,124,1.0,0.5,2,Lagos Teaching Hospital (Nigeria)
+3,36.2118,0.103531,1.0,0.6,0.2,124,1.0,0.5,2,Upper West Ghana District
+4,33.8163,0.092638,1.0,0.4465,0.3122,124,0.4062,0.4211,2,Kigali Reference (Rwanda)
+5,36.2118,0.103531,1.0,0.6,0.2,124,1.0,0.5,2,Lindi District (Tanzania)
+6,29.912,0.032582,1.0,0.5094,0.0633,124,0.6562,0.5402,2,Lusaka District (Zambia)
+7,36.2118,0.103531,1.0,0.6,0.2,124,1.0,0.5,2,Dakar Outpost (Senegal)
+8,36.2118,0.103531,1.0,0.6,0.2,124,1.0,0.5,2,Oromia Regional (Ethiopia)
+9,36.2118,0.103531,1.0,0.6,0.2,124,1.0,0.5,2,Nampula Province (Mozambique)
+0,35.0244,0.119822,1.0,0.4586,0.1911,124,0.4375,0.4048,3,Kisumu Lakeside (Kenya)
+1,34.5138,0.087022,1.0,0.5528,0.2,124,0.5,0.5725,3,Northern Uganda Regional
+2,36.8243,0.113739,1.0,0.6,0.2,124,1.0,0.5,3,Lagos Teaching Hospital (Nigeria)
+3,36.8243,0.113739,1.0,0.6,0.2,124,1.0,0.5,3,Upper West Ghana District
+4,33.7504,0.085467,1.0,0.4708,0.3122,124,0.4062,0.4818,3,Kigali Reference (Rwanda)
+5,36.8243,0.113739,1.0,0.6,0.2,124,1.0,0.5,3,Lindi District (Tanzania)
+6,29.1328,-0.025257,1.0,0.5877,0.0633,124,0.8438,0.4828,3,Lusaka District (Zambia)
+7,36.8243,0.113739,1.0,0.6,0.2,124,1.0,0.5,3,Dakar Outpost (Senegal)
+8,36.8243,0.113739,1.0,0.6,0.2,124,1.0,0.5,3,Oromia Regional (Ethiopia)
+9,36.8243,0.113739,1.0,0.6,0.2,124,1.0,0.5,3,Nampula Province (Mozambique)
+0,35.4648,0.104939,1.0,0.5475,0.1911,124,0.4375,0.627,4,Kisumu Lakeside (Kenya)
+1,33.852,0.074343,1.0,0.5594,0.2,124,0.5,0.5804,4,Northern Uganda Regional
+2,35.7317,0.095528,1.0,0.6,0.2,124,1.0,0.5,4,Lagos Teaching Hospital (Nigeria)
+3,35.7317,0.095528,1.0,0.6,0.2,124,1.0,0.5,4,Upper West Ghana District
+4,37.0969,0.132335,1.0,0.5064,0.3122,124,0.4062,0.5709,4,Kigali Reference (Rwanda)
+5,35.7317,0.095528,1.0,0.6,0.2,124,1.0,0.5,4,Lindi District (Tanzania)
+6,35.191,0.115216,1.0,0.5308,0.0633,124,0.7188,0.5172,4,Lusaka District (Zambia)
+7,35.7317,0.095528,1.0,0.6,0.2,124,1.0,0.5,4,Dakar Outpost (Senegal)
+8,35.7317,0.095528,1.0,0.6,0.2,124,1.0,0.5,4,Oromia Regional (Ethiopia)
+9,35.7317,0.095528,1.0,0.6,0.2,124,1.0,0.5,4,Nampula Province (Mozambique)
+0,36.711,0.143566,1.0,0.4761,0.1911,124,0.4375,0.4484,5,Kisumu Lakeside (Kenya)
+1,38.2401,0.154733,1.0,0.5304,0.2,124,0.5,0.5078,5,Northern Uganda Regional
+2,35.7664,0.096107,1.0,0.6,0.2,124,1.0,0.5,5,Lagos Teaching Hospital (Nigeria)
+3,35.7664,0.096107,1.0,0.6,0.2,124,1.0,0.5,5,Upper West Ghana District
+4,33.5604,0.086753,1.0,0.453,0.3122,124,0.4062,0.4372,5,Kigali Reference (Rwanda)
+5,35.7664,0.096107,1.0,0.6,0.2,124,1.0,0.5,5,Lindi District (Tanzania)
+6,31.4865,0.038307,1.0,0.5914,0.0633,124,0.7812,0.5862,5,Lusaka District (Zambia)
+7,35.7664,0.096107,1.0,0.6,0.2,124,1.0,0.5,5,Dakar Outpost (Senegal)
+8,35.7664,0.096107,1.0,0.6,0.2,124,1.0,0.5,5,Oromia Regional (Ethiopia)
+9,35.7664,0.096107,1.0,0.6,0.2,124,1.0,0.5,5,Nampula Province (Mozambique)
+0,36.304,0.082546,1.0,0.6931,0.1911,124,0.5938,0.8056,6,Kisumu Lakeside (Kenya)
+1,34.4616,0.10206,1.0,0.4892,0.2,124,0.4688,0.4431,6,Northern Uganda Regional
+2,36.2811,0.104685,1.0,0.6,0.2,124,1.0,0.5,6,Lagos Teaching Hospital (Nigeria)
+3,36.2811,0.104685,1.0,0.6,0.2,124,1.0,0.5,6,Upper West Ghana District
+4,31.8043,0.05951,1.0,0.4449,0.3122,124,0.4062,0.417,6,Kigali Reference (Rwanda)
+5,36.2811,0.104685,1.0,0.6,0.2,124,1.0,0.5,6,Lindi District (Tanzania)
+6,33.5234,0.127772,1.0,0.3694,0.0633,124,0.5312,0.3333,6,Lusaka District (Zambia)
+7,36.2811,0.104685,1.0,0.6,0.2,124,1.0,0.5,6,Dakar Outpost (Senegal)
+8,36.2811,0.104685,1.0,0.6,0.2,124,1.0,0.5,6,Oromia Regional (Ethiopia)
+9,36.2811,0.104685,1.0,0.6,0.2,124,1.0,0.5,6,Nampula Province (Mozambique)
+0,32.9459,0.073769,1.0,0.5043,0.1911,124,0.4062,0.5754,7,Kisumu Lakeside (Kenya)
+1,35.258,0.099148,1.0,0.5539,0.2,124,0.5,0.5667,7,Northern Uganda Regional
+2,36.1934,0.103223,1.0,0.6,0.2,124,1.0,0.5,7,Lagos Teaching Hospital (Nigeria)
+3,36.1934,0.103223,1.0,0.6,0.2,124,1.0,0.5,7,Upper West Ghana District
+4,34.7046,0.106228,1.0,0.4513,0.3122,124,0.4062,0.4332,7,Kigali Reference (Rwanda)
+5,36.1934,0.103223,1.0,0.6,0.2,124,1.0,0.5,7,Lindi District (Tanzania)
+6,35.0826,0.101517,1.0,0.5783,0.0633,124,0.6562,0.7126,7,Lusaka District (Zambia)
+7,36.1934,0.103223,1.0,0.6,0.2,124,1.0,0.5,7,Dakar Outpost (Senegal)
+8,36.1934,0.103223,1.0,0.6,0.2,124,1.0,0.5,7,Oromia Regional (Ethiopia)
+9,36.1934,0.103223,1.0,0.6,0.2,124,1.0,0.5,7,Nampula Province (Mozambique)
+0,31.9618,0.033231,1.0,0.6008,0.1911,124,0.4688,0.7222,8,Kisumu Lakeside (Kenya)
+1,34.0549,0.105359,1.0,0.4489,0.2,124,0.375,0.4745,8,Northern Uganda Regional
+2,36.954,0.1159,1.0,0.6,0.2,124,1.0,0.5,8,Lagos Teaching Hospital (Nigeria)
+3,36.954,0.1159,1.0,0.6,0.2,124,1.0,0.5,8,Upper West Ghana District
+4,36.1963,0.125423,1.0,0.474,0.3122,124,0.4062,0.4899,8,Kigali Reference (Rwanda)
+5,36.954,0.1159,1.0,0.6,0.2,124,1.0,0.5,8,Lindi District (Tanzania)
+6,30.8823,0.040587,1.0,0.542,0.0633,124,0.5938,0.6437,8,Lusaka District (Zambia)
+7,36.954,0.1159,1.0,0.6,0.2,124,1.0,0.5,8,Dakar Outpost (Senegal)
+8,36.954,0.1159,1.0,0.6,0.2,124,1.0,0.5,8,Oromia Regional (Ethiopia)
+9,36.954,0.1159,1.0,0.6,0.2,124,1.0,0.5,8,Nampula Province (Mozambique)
+0,35.3637,0.134512,1.0,0.4225,0.1911,124,0.4062,0.3611,9,Kisumu Lakeside (Kenya)
+1,35.3224,0.097584,1.0,0.5645,0.2,124,0.4688,0.6314,9,Northern Uganda Regional
+2,36.3307,0.105511,1.0,0.6,0.2,124,1.0,0.5,9,Lagos Teaching Hospital (Nigeria)
+3,36.3307,0.105511,1.0,0.6,0.2,124,1.0,0.5,9,Upper West Ghana District
+4,37.0119,0.131322,1.0,0.5048,0.3122,124,0.4062,0.5668,9,Kigali Reference (Rwanda)
+5,36.3307,0.105511,1.0,0.6,0.2,124,1.0,0.5,9,Lindi District (Tanzania)
+6,28.7692,-0.003515,1.0,0.5635,0.0633,124,0.8125,0.4713,9,Lusaka District (Zambia)
+7,36.3307,0.105511,1.0,0.6,0.2,124,1.0,0.5,9,Dakar Outpost (Senegal)
+8,36.3307,0.105511,1.0,0.6,0.2,124,1.0,0.5,9,Oromia Regional (Ethiopia)
+9,36.3307,0.105511,1.0,0.6,0.2,124,1.0,0.5,9,Nampula Province (Mozambique)
+0,39.3928,0.168819,1.0,0.5539,0.1911,124,0.4375,0.6429,10,Kisumu Lakeside (Kenya)
+1,36.11,0.122474,1.0,0.5174,0.2,124,0.4688,0.5137,10,Northern Uganda Regional
+2,35.509,0.091816,1.0,0.6,0.2,124,1.0,0.5,10,Lagos Teaching Hospital (Nigeria)
+3,35.509,0.091816,1.0,0.6,0.2,124,1.0,0.5,10,Upper West Ghana District
+4,34.8118,0.118946,1.0,0.4076,0.3122,124,0.4062,0.3239,10,Kigali Reference (Rwanda)
+5,35.509,0.091816,1.0,0.6,0.2,124,1.0,0.5,10,Lindi District (Tanzania)
+6,32.3618,0.038864,1.0,0.6476,0.0633,124,0.9062,0.7126,10,Lusaka District (Zambia)
+7,35.509,0.091816,1.0,0.6,0.2,124,1.0,0.5,10,Dakar Outpost (Senegal)
+8,35.509,0.091816,1.0,0.6,0.2,124,1.0,0.5,10,Oromia Regional (Ethiopia)
+9,35.509,0.091816,1.0,0.6,0.2,124,1.0,0.5,10,Nampula Province (Mozambique)
+0,34.532,0.095405,1.0,0.5235,0.1911,124,0.5312,0.4802,11,Kisumu Lakeside (Kenya)
+1,32.8699,0.074564,1.0,0.4931,0.2,124,0.5,0.4549,11,Northern Uganda Regional
+2,36.7307,0.112179,1.0,0.6,0.2,124,1.0,0.5,11,Lagos Teaching Hospital (Nigeria)
+3,36.5432,0.112179,1.0,0.5875,0.2,124,0.9688,0.5,11,Upper West Ghana District
+4,35.3473,0.121394,1.0,0.4335,0.3122,124,0.4062,0.3887,11,Kigali Reference (Rwanda)
+5,36.7307,0.112179,1.0,0.6,0.2,124,1.0,0.5,11,Lindi District (Tanzania)
+6,29.6315,0.035564,1.0,0.4787,0.0633,124,0.875,0.3218,11,Lusaka District (Zambia)
+7,36.7307,0.112179,1.0,0.6,0.2,124,1.0,0.5,11,Dakar Outpost (Senegal)
+8,36.7307,0.112179,1.0,0.6,0.2,124,1.0,0.5,11,Oromia Regional (Ethiopia)
+9,36.7307,0.112179,1.0,0.6,0.2,124,1.0,0.5,11,Nampula Province (Mozambique)
+0,34.5965,0.105005,1.0,0.4894,0.1911,124,0.4688,0.4524,12,Kisumu Lakeside (Kenya)
+1,34.7843,0.109187,1.0,0.4822,0.2,124,0.4375,0.4725,12,Northern Uganda Regional
+2,35.9562,0.09927,1.0,0.6,0.2,124,1.0,0.5,12,Lagos Teaching Hospital (Nigeria)
+3,35.9562,0.09927,1.0,0.6,0.2,124,1.0,0.5,12,Upper West Ghana District
+4,34.9045,0.124135,1.0,0.393,0.3122,124,0.4062,0.2874,12,Kigali Reference (Rwanda)
+5,35.9562,0.09927,1.0,0.6,0.2,124,1.0,0.5,12,Lindi District (Tanzania)
+6,30.7939,0.066051,1.0,0.4343,0.0633,124,0.5938,0.4253,12,Lusaka District (Zambia)
+7,35.9562,0.09927,1.0,0.6,0.2,124,1.0,0.5,12,Dakar Outpost (Senegal)
+8,35.9562,0.09927,1.0,0.6,0.2,124,1.0,0.5,12,Oromia Regional (Ethiopia)
+9,35.9562,0.09927,1.0,0.6,0.2,124,1.0,0.5,12,Nampula Province (Mozambique)
+0,35.5339,0.116012,1.0,0.5079,0.1911,124,0.4375,0.5278,13,Kisumu Lakeside (Kenya)
+1,33.1909,0.069313,1.0,0.5355,0.2,124,0.4688,0.5588,13,Northern Uganda Regional
+2,36.2169,0.103615,1.0,0.6,0.2,124,1.0,0.5,13,Lagos Teaching Hospital (Nigeria)
+3,36.2169,0.103615,1.0,0.6,0.2,124,1.0,0.5,13,Upper West Ghana District
+4,38.8214,0.150412,1.0,0.5491,0.3122,124,0.4375,0.6397,13,Kigali Reference (Rwanda)
+5,36.2169,0.103615,1.0,0.6,0.2,124,1.0,0.5,13,Lindi District (Tanzania)
+6,30.9486,0.042572,1.0,0.5385,0.0633,124,0.875,0.4713,13,Lusaka District (Zambia)
+7,36.2169,0.103615,1.0,0.6,0.2,124,1.0,0.5,13,Dakar Outpost (Senegal)
+8,36.2169,0.103615,1.0,0.6,0.2,124,1.0,0.5,13,Oromia Regional (Ethiopia)
+9,36.2169,0.103615,1.0,0.6,0.2,124,1.0,0.5,13,Nampula Province (Mozambique)
+0,36.1376,0.11844,1.0,0.5384,0.1911,124,0.5,0.5278,14,Kisumu Lakeside (Kenya)
+1,33.4868,0.070714,1.0,0.5496,0.2,124,0.5625,0.4706,14,Northern Uganda Regional
+2,36.5205,0.108675,1.0,0.6,0.2,124,1.0,0.5,14,Lagos Teaching Hospital (Nigeria)
+3,36.5205,0.108675,1.0,0.6,0.2,124,1.0,0.5,14,Upper West Ghana District
+4,37.3568,0.153843,1.0,0.4377,0.3122,124,0.4062,0.4089,14,Kigali Reference (Rwanda)
+5,36.5205,0.108675,1.0,0.6,0.2,124,1.0,0.5,14,Lindi District (Tanzania)
+6,26.1183,0.004955,1.0,0.367,0.0633,124,0.6875,0.2299,14,Lusaka District (Zambia)
+7,36.5205,0.108675,1.0,0.6,0.2,124,1.0,0.5,14,Dakar Outpost (Senegal)
+8,36.5205,0.108675,1.0,0.6,0.2,124,1.0,0.5,14,Oromia Regional (Ethiopia)
+9,36.5205,0.108675,1.0,0.6,0.2,124,1.0,0.5,14,Nampula Province (Mozambique)
+0,35.4126,0.101032,1.0,0.5597,0.1911,124,0.5,0.5992,15,Kisumu Lakeside (Kenya)
+1,32.6,0.074064,1.0,0.4771,0.2,124,0.5,0.3745,15,Northern Uganda Regional
+2,35.9937,0.099895,1.0,0.6,0.2,124,1.0,0.5,15,Lagos Teaching Hospital (Nigeria)
+3,35.9937,0.099895,1.0,0.6,0.2,124,1.0,0.5,15,Upper West Ghana District
+4,30.6299,0.058154,1.0,0.372,0.3122,124,0.4062,0.2348,15,Kigali Reference (Rwanda)
+5,35.9937,0.099895,1.0,0.6,0.2,124,1.0,0.5,15,Lindi District (Tanzania)
+6,35.5576,0.167378,1.0,0.3466,0.0633,124,0.5625,0.2414,15,Lusaka District (Zambia)
+7,35.9937,0.099895,1.0,0.6,0.2,124,1.0,0.5,15,Dakar Outpost (Senegal)
+8,35.9937,0.099895,1.0,0.6,0.2,124,1.0,0.5,15,Oromia Regional (Ethiopia)
+9,35.9937,0.099895,1.0,0.6,0.2,124,1.0,0.5,15,Nampula Province (Mozambique)
+0,34.0493,0.097785,1.0,0.4818,0.1911,124,0.4688,0.4246,16,Kisumu Lakeside (Kenya)
+1,37.7995,0.122161,1.0,0.6313,0.2,124,0.5312,0.7137,16,Northern Uganda Regional
+2,35.5036,0.091726,1.0,0.6,0.2,124,1.0,0.5,16,Lagos Teaching Hospital (Nigeria)
+3,35.5036,0.091726,1.0,0.6,0.2,124,1.0,0.5,16,Upper West Ghana District
+4,34.7572,0.108724,1.0,0.4449,0.3122,124,0.4062,0.417,16,Kigali Reference (Rwanda)
+5,35.5036,0.091726,1.0,0.6,0.2,124,1.0,0.5,16,Lindi District (Tanzania)
+6,36.6074,0.120974,1.0,0.6022,0.0633,124,0.7812,0.7241,16,Lusaka District (Zambia)
+7,35.5036,0.091726,1.0,0.6,0.2,124,1.0,0.5,16,Dakar Outpost (Senegal)
+8,35.5036,0.091726,1.0,0.6,0.2,124,1.0,0.5,16,Oromia Regional (Ethiopia)
+9,35.5036,0.091726,1.0,0.6,0.2,124,1.0,0.5,16,Nampula Province (Mozambique)
+0,36.9234,0.13585,1.0,0.5211,0.1911,124,0.4688,0.5317,17,Kisumu Lakeside (Kenya)
+1,32.6667,0.083503,1.0,0.4438,0.2,124,0.4375,0.3765,17,Northern Uganda Regional
+2,35.7332,0.095554,1.0,0.6,0.2,124,1.0,0.5,17,Lagos Teaching Hospital (Nigeria)
+3,35.7332,0.095554,1.0,0.6,0.2,124,1.0,0.5,17,Upper West Ghana District
+4,33.6565,0.073375,1.0,0.5129,0.3122,124,0.4062,0.587,17,Kigali Reference (Rwanda)
+5,35.7332,0.095554,1.0,0.6,0.2,124,1.0,0.5,17,Lindi District (Tanzania)
+6,33.5131,0.133949,1.0,0.344,0.0633,124,0.6875,0.1724,17,Lusaka District (Zambia)
+7,35.7332,0.095554,1.0,0.6,0.2,124,1.0,0.5,17,Dakar Outpost (Senegal)
+8,35.7332,0.095554,1.0,0.6,0.2,124,1.0,0.5,17,Oromia Regional (Ethiopia)
+9,35.7332,0.095554,1.0,0.6,0.2,124,1.0,0.5,17,Nampula Province (Mozambique)
+0,35.8349,0.12542,1.0,0.4903,0.1911,124,0.4688,0.4643,18,Kisumu Lakeside (Kenya)
+1,32.9289,0.052396,1.0,0.5857,0.2,124,0.5625,0.5608,18,Northern Uganda Regional
+2,35.857,0.097617,1.0,0.6,0.2,124,1.0,0.5,18,Lagos Teaching Hospital (Nigeria)
+3,35.857,0.097617,1.0,0.6,0.2,124,1.0,0.5,18,Upper West Ghana District
+4,37.4821,0.147257,1.0,0.4724,0.3122,124,0.4062,0.4858,18,Kigali Reference (Rwanda)
+5,35.857,0.097617,1.0,0.6,0.2,124,1.0,0.5,18,Lindi District (Tanzania)
+6,31.4883,0.089228,1.0,0.3879,0.0633,124,0.4688,0.4483,18,Lusaka District (Zambia)
+7,35.857,0.097617,1.0,0.6,0.2,124,1.0,0.5,18,Dakar Outpost (Senegal)
+8,35.857,0.097617,1.0,0.6,0.2,124,1.0,0.5,18,Oromia Regional (Ethiopia)
+9,35.857,0.097617,1.0,0.6,0.2,124,1.0,0.5,18,Nampula Province (Mozambique)
+0,36.5399,0.128042,1.0,0.5268,0.1911,124,0.4688,0.5556,19,Kisumu Lakeside (Kenya)
+1,32.3633,0.088993,1.0,0.4016,0.2,124,0.4062,0.3294,19,Northern Uganda Regional
+2,36.7834,0.113057,1.0,0.6,0.2,124,1.0,0.5,19,Lagos Teaching Hospital (Nigeria)
+3,36.7834,0.113057,1.0,0.6,0.2,124,1.0,0.5,19,Upper West Ghana District
+4,31.6194,0.062096,1.0,0.4222,0.3122,124,0.4062,0.3603,19,Kigali Reference (Rwanda)
+5,36.7834,0.113057,1.0,0.6,0.2,124,1.0,0.5,19,Lindi District (Tanzania)
+6,28.4943,0.042525,1.0,0.3751,0.0633,124,0.375,0.5172,19,Lusaka District (Zambia)
+7,36.7834,0.113057,1.0,0.6,0.2,124,1.0,0.5,19,Dakar Outpost (Senegal)
+8,36.7834,0.113057,1.0,0.6,0.2,124,1.0,0.5,19,Oromia Regional (Ethiopia)
+9,36.7834,0.113057,1.0,0.6,0.2,124,1.0,0.5,19,Nampula Province (Mozambique)
+0,36.0727,0.142151,1.0,0.4392,0.1911,124,0.4375,0.3651,20,Kisumu Lakeside (Kenya)
+1,38.8909,0.170376,1.0,0.5112,0.2,124,0.4375,0.5451,20,Northern Uganda Regional
+2,35.8407,0.097345,1.0,0.6,0.2,124,1.0,0.5,20,Lagos Teaching Hospital (Nigeria)
+3,35.8407,0.097345,1.0,0.6,0.2,124,1.0,0.5,20,Upper West Ghana District
+4,33.5369,0.081909,1.0,0.4708,0.3122,124,0.4062,0.4818,20,Kigali Reference (Rwanda)
+5,35.8407,0.097345,1.0,0.6,0.2,124,1.0,0.5,20,Lindi District (Tanzania)
+6,28.8195,0.021497,1.0,0.4809,0.0633,124,0.625,0.5057,20,Lusaka District (Zambia)
+7,35.8407,0.097345,1.0,0.6,0.2,124,1.0,0.5,20,Dakar Outpost (Senegal)
+8,35.8407,0.097345,1.0,0.6,0.2,124,1.0,0.5,20,Oromia Regional (Ethiopia)
+9,35.8407,0.097345,1.0,0.6,0.2,124,1.0,0.5,20,Nampula Province (Mozambique)
