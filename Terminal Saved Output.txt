@@ -1,0 +1,1732 @@
+
+╔═══════════════════════════════════════════════════════════════╗
+║  MALARIA FEDERATED LEARNING FRAMEWORK                        ║
+║  Proactive Surveillance for Sub-Saharan Africa               ║
+║  Bachelor's Thesis — Zachary Thurston, ESADE 2025-26         ║
+╚═══════════════════════════════════════════════════════════════╝
+  🗑️  Cleared 10 cached files.
+  ✅ Real images found: 13779 Parasitized + 13779 Uninfected
+
+  🌦️  ERA5 real weather: /Users/zacharythurston/Desktop/Malaria/era5_weekly
+  📊 Pf8:  /Users/zacharythurston/Desktop/Malaria/pf8/Pf8-samples.csv
+  🗺️  MAP:  /Users/zacharythurston/Desktop/Malaria/Subnational Unit-data.csv
+
+=================================================================
+  MALARIA FL FRAMEWORK  (v2 — robust + real data)
+=================================================================
+  Clinics      : 10
+  Rounds       : 20
+  Features     : 55 (env=13, drug=6, img=34, missing_masks=3)
+  Weeks/clinic : 156 (2019-2021)
+  Noise inject : True
+=================================================================
+
+  Loading real data sources...
+  [Pf8] Loading MalariaGEN Pf8...
+  [Pf8] 1,934 QC-passed samples
+  [MAP] Loading Malaria Atlas Project incidence data...
+  [MAP] 15,450 rows loaded
+
+  ────────────────────────────────────────────────────
+  Clinic 0: Kisumu Lakeside (Kenya)
+  District: Kisumu  |  Type: rural_high_burden
+  ────────────────────────────────────────────────────
+  [ERA5] ✅ Real data loaded: Kisumu Lakeside (Kenya)  (113 weeks → 156 used)
+  [WEA] ERA5 real (era5_Kisumu_KEN.csv)
+  [DRG] MalariaGEN Pf8 real data
+         ART=0.004  CQ=0.005  PYR=0.982  SDX=0.988
+  [MAP] Mean weekly incidence: 2.326 per 1000
+  [MAP] Outbreak weeks: 34/156  (21.8%)  [two-condition trigger: in-season AND rainfall anomaly]
+  [IMG] 3120 real images | pos rate: 50.0%
+  [IMG] NIH Kaggle cell images (real)  |  n=3120  |  weekly pos rate: 66.7%
+
+  ────────────────────────────────────────────────────
+  Clinic 1: Northern Uganda Regional
+  District: Northern  |  Type: rural_high_burden
+  ────────────────────────────────────────────────────
+  [ERA5] ✅ Real data loaded: Northern Uganda Regional  (113 weeks → 156 used)
+  [WEA] ERA5 real (era5_N_Uganda_UGA.csv)
+  [DRG] MalariaGEN Pf8 real data
+         ART=0.000  CQ=0.150  PYR=0.950  SDX=0.850
+  [MAP] Mean weekly incidence: 6.920 per 1000
+  [MAP] Outbreak weeks: 42/156  (26.9%)  [two-condition trigger: in-season AND rainfall anomaly]
+  [IMG] 2808 real images | pos rate: 50.0%
+  [IMG] NIH Kaggle cell images (real)  |  n=2808  |  weekly pos rate: 60.0%
+
+  ────────────────────────────────────────────────────
+  Clinic 2: Lagos Teaching Hospital (Nigeria)
+  District: Lagos  |  Type: urban
+  ────────────────────────────────────────────────────
+  [ERA5] ✅ Real data loaded: Lagos Teaching Hospital (Nigeria)  (113 weeks → 156 used)
+  [WEA] ERA5 real (era5_Lagos_NGA.csv)
+  [DRG] MalariaGEN Pf8 real data
+         ART=0.000  CQ=0.150  PYR=0.950  SDX=0.850
+  [MAP] Mean weekly incidence: 3.637 per 1000
+  [MAP] Outbreak weeks: 18/156  (11.5%)  [two-condition trigger: in-season AND rainfall anomaly]
+  [IMG] 4680 real images | pos rate: 50.0%
+  [IMG] NIH Kaggle cell images (real)  |  n=4680  |  weekly pos rate: 100.0%
+
+  ────────────────────────────────────────────────────
+  Clinic 3: Upper West Ghana District
+  District: Upper West  |  Type: rural_high_burden
+  ────────────────────────────────────────────────────
+  [ERA5] ✅ Real data loaded: Upper West Ghana District  (113 weeks → 156 used)
+  [WEA] ERA5 real (era5_Upper_W_Ghana_GHA.csv)
+  [DRG] MalariaGEN Pf8 real data
+         ART=0.000  CQ=0.150  PYR=0.950  SDX=0.850
+  [MAP] Mean weekly incidence: 4.073 per 1000
+  [MAP] Outbreak weeks: 24/156  (15.4%)  [two-condition trigger: in-season AND rainfall anomaly]
+  [IMG] 2340 real images | pos rate: 50.0%
+  [IMG] NIH Kaggle cell images (real)  |  n=2340  |  weekly pos rate: 50.0%
+
+  ────────────────────────────────────────────────────
+  Clinic 4: Kigali Reference (Rwanda)
+  District: Kigali City  |  Type: urban
+  ────────────────────────────────────────────────────
+  [ERA5] ✅ Real data loaded: Kigali Reference (Rwanda)  (113 weeks → 156 used)
+  [WEA] ERA5 real (era5_Kigali_RWA.csv)
+  [DRG] Literature: Fankem et al. (2025) Pathogens 14(11)
+         ART=0.256  CQ=0.260  PYR=0.948  SDX=0.920
+  [MAP] Mean weekly incidence: 1.055 per 1000
+  [MAP] Outbreak weeks: 28/156  (17.9%)  [two-condition trigger: in-season AND rainfall anomaly]
+  [IMG] 1872 real images | pos rate: 50.0%
+  [IMG] NIH Kaggle cell images (real)  |  n=1872  |  weekly pos rate: 40.0%
+
+  ────────────────────────────────────────────────────
+  Clinic 5: Lindi District (Tanzania)
+  District: Lindi  |  Type: rural_high_burden
+  ────────────────────────────────────────────────────
+  [ERA5] ✅ Real data loaded: Lindi District (Tanzania)  (113 weeks → 156 used)
+  [WEA] ERA5 real (era5_Lindi_TZA.csv)
+  [DRG] MalariaGEN Pf8 real data
+         ART=0.000  CQ=0.150  PYR=0.950  SDX=0.850
+  [MAP] Mean weekly incidence: 4.073 per 1000
+  [MAP] Outbreak weeks: 20/156  (12.8%)  [two-condition trigger: in-season AND rainfall anomaly]
+  [IMG] 3120 real images | pos rate: 50.0%
+  [IMG] NIH Kaggle cell images (real)  |  n=3120  |  weekly pos rate: 66.7%
+
+  ────────────────────────────────────────────────────
+  Clinic 6: Lusaka District (Zambia)
+  District: Lusaka  |  Type: urban
+  ────────────────────────────────────────────────────
+  [ERA5] ✅ Real data loaded: Lusaka District (Zambia)  (113 weeks → 156 used)
+  [WEA] ERA5 real (era5_Lusaka_ZMB.csv)
+  [DRG] Literature: Walker et al. (2025) Open Forum Infect Dis 12(9)
+         ART=0.068  CQ=0.121  PYR=0.870  SDX=0.822
+  [MAP] Mean weekly incidence: 2.720 per 1000
+  [MAP] Outbreak weeks: 20/156  (12.8%)  [two-condition trigger: in-season AND rainfall anomaly]
+  [IMG] 2808 real images | pos rate: 50.0%
+  [IMG] NIH Kaggle cell images (real)  |  n=2808  |  weekly pos rate: 60.0%
+
+  ────────────────────────────────────────────────────
+  Clinic 7: Dakar Outpost (Senegal)
+  District: Dakar  |  Type: urban
+  ────────────────────────────────────────────────────
+  [ERA5] ✅ Real data loaded: Dakar Outpost (Senegal)  (113 weeks → 156 used)
+  [WEA] ERA5 real (era5_Dakar_SEN.csv)
+  [DRG] MalariaGEN Pf8 real data
+         ART=0.000  CQ=0.150  PYR=0.950  SDX=0.850
+  [MAP] Mean weekly incidence: 1.485 per 1000
+  [MAP] Outbreak weeks: 13/156  (8.3%)  [two-condition trigger: in-season AND rainfall anomaly]
+  [IMG] 1248 real images | pos rate: 50.0%
+  [IMG] NIH Kaggle cell images (real)  |  n=1248  |  weekly pos rate: 26.7%
+
+  ────────────────────────────────────────────────────
+  Clinic 8: Oromia Regional (Ethiopia)
+  District: Oromia  |  Type: rural_high_burden
+  ────────────────────────────────────────────────────
+  [ERA5] ✅ Real data loaded: Oromia Regional (Ethiopia)  (113 weeks → 156 used)
+  [WEA] ERA5 real (era5_Oromia_ETH.csv)
+  [DRG] MalariaGEN Pf8 real data
+         ART=0.000  CQ=0.150  PYR=0.950  SDX=0.850
+  [MAP] Mean weekly incidence: 1.057 per 1000
+  [MAP] Outbreak weeks: 19/156  (12.2%)  [two-condition trigger: in-season AND rainfall anomaly]
+  [IMG] 1560 real images | pos rate: 50.0%
+  [IMG] NIH Kaggle cell images (real)  |  n=1560  |  weekly pos rate: 33.3%
+
+  ────────────────────────────────────────────────────
+  Clinic 9: Nampula Province (Mozambique)
+  District: Nampula  |  Type: rural_high_burden
+  ────────────────────────────────────────────────────
+  [ERA5] ✅ Real data loaded: Nampula Province (Mozambique)  (113 weeks → 156 used)
+  [WEA] ERA5 real (era5_Nampula_MOZ.csv)
+  [DRG] MalariaGEN Pf8 real data
+         ART=0.000  CQ=0.150  PYR=0.950  SDX=0.850
+  [MAP] Mean weekly incidence: 7.784 per 1000
+  [MAP] Outbreak weeks: 21/156  (13.5%)  [two-condition trigger: in-season AND rainfall anomaly]
+  [IMG] 3900 real images | pos rate: 50.0%
+  [IMG] NIH Kaggle cell images (real)  |  n=3900  |  weekly pos rate: 83.3%
+
+==============================================================
+  DATASET SUMMARY
+==============================================================
+  Clinic                                    Inc/wk  Outbrk%    ART     CQ
+  ----------------------------------------------------------------------
+  Kisumu Lakeside (Kenya)                    2.326   21.8%  0.004  0.005
+  Northern Uganda Regional                   6.920   26.9%  0.000  0.150
+  Lagos Teaching Hospital (Nigeria)          3.637   11.5%  0.000  0.150
+  Upper West Ghana District                  4.073   15.4%  0.000  0.150
+  Kigali Reference (Rwanda)                  1.055   17.9%  0.256  0.260 ← HIGH ART
+  Lindi District (Tanzania)                  4.073   12.8%  0.000  0.150
+  Lusaka District (Zambia)                   2.720   12.8%  0.068  0.121
+  Dakar Outpost (Senegal)                    1.485    8.3%  0.000  0.150
+  Oromia Regional (Ethiopia)                 1.057   12.2%  0.000  0.150
+  Nampula Province (Mozambique)              7.784   13.5%  0.000  0.150
+
+  DATA PROVENANCE
+  --------------------------------------------------------------
+
+  Kisumu Lakeside (Kenya)
+    weather           : ERA5 real (era5_Kisumu_KEN.csv)
+    drug_resistance   : MalariaGEN Pf8 real data
+    incidence         : MAP subnational (seasonal disaggregation, Gaussian σ=4wk)
+    images            : NIH Kaggle cell images (real)
+    labels            : Two-condition trigger: in-season AND rainfall anomaly (Grover-Kopec 2005)
+
+  Northern Uganda Regional
+    weather           : ERA5 real (era5_N_Uganda_UGA.csv)
+    drug_resistance   : MalariaGEN Pf8 real data
+    incidence         : MAP subnational (seasonal disaggregation, Gaussian σ=4wk)
+    images            : NIH Kaggle cell images (real)
+    labels            : Two-condition trigger: in-season AND rainfall anomaly (Grover-Kopec 2005)
+
+  Lagos Teaching Hospital (Nigeria)
+    weather           : ERA5 real (era5_Lagos_NGA.csv)
+    drug_resistance   : MalariaGEN Pf8 real data
+    incidence         : MAP subnational (seasonal disaggregation, Gaussian σ=4wk)
+    images            : NIH Kaggle cell images (real)
+    labels            : Two-condition trigger: in-season AND rainfall anomaly (Grover-Kopec 2005)
+
+  Upper West Ghana District
+    weather           : ERA5 real (era5_Upper_W_Ghana_GHA.csv)
+    drug_resistance   : MalariaGEN Pf8 real data
+    incidence         : MAP subnational (seasonal disaggregation, Gaussian σ=4wk)
+    images            : NIH Kaggle cell images (real)
+    labels            : Two-condition trigger: in-season AND rainfall anomaly (Grover-Kopec 2005)
+
+  Kigali Reference (Rwanda)
+    weather           : ERA5 real (era5_Kigali_RWA.csv)
+    drug_resistance   : Literature: Fankem et al. (2025) Pathogens 14(11)
+    incidence         : MAP subnational (seasonal disaggregation, Gaussian σ=4wk)
+    images            : NIH Kaggle cell images (real)
+    labels            : Two-condition trigger: in-season AND rainfall anomaly (Grover-Kopec 2005)
+
+  Lindi District (Tanzania)
+    weather           : ERA5 real (era5_Lindi_TZA.csv)
+    drug_resistance   : MalariaGEN Pf8 real data
+    incidence         : MAP subnational (seasonal disaggregation, Gaussian σ=4wk)
+    images            : NIH Kaggle cell images (real)
+    labels            : Two-condition trigger: in-season AND rainfall anomaly (Grover-Kopec 2005)
+
+  Lusaka District (Zambia)
+    weather           : ERA5 real (era5_Lusaka_ZMB.csv)
+    drug_resistance   : Literature: Walker et al. (2025) Open Forum Infect Dis 12(9)
+    incidence         : MAP subnational (seasonal disaggregation, Gaussian σ=4wk)
+    images            : NIH Kaggle cell images (real)
+    labels            : Two-condition trigger: in-season AND rainfall anomaly (Grover-Kopec 2005)
+
+  Dakar Outpost (Senegal)
+    weather           : ERA5 real (era5_Dakar_SEN.csv)
+    drug_resistance   : MalariaGEN Pf8 real data
+    incidence         : MAP subnational (seasonal disaggregation, Gaussian σ=4wk)
+    images            : NIH Kaggle cell images (real)
+    labels            : Two-condition trigger: in-season AND rainfall anomaly (Grover-Kopec 2005)
+
+  Oromia Regional (Ethiopia)
+    weather           : ERA5 real (era5_Oromia_ETH.csv)
+    drug_resistance   : MalariaGEN Pf8 real data
+    incidence         : MAP subnational (seasonal disaggregation, Gaussian σ=4wk)
+    images            : NIH Kaggle cell images (real)
+    labels            : Two-condition trigger: in-season AND rainfall anomaly (Grover-Kopec 2005)
+
+  Nampula Province (Mozambique)
+    weather           : ERA5 real (era5_Nampula_MOZ.csv)
+    drug_resistance   : MalariaGEN Pf8 real data
+    incidence         : MAP subnational (seasonal disaggregation, Gaussian σ=4wk)
+    images            : NIH Kaggle cell images (real)
+    labels            : Two-condition trigger: in-season AND rainfall anomaly (Grover-Kopec 2005)
+  [SERVER] Initialising global model (cold start)...
+  [SERVER] Global model ready. Input dim: 55 features (53 real + 3 missing indicators).
+
+  Clinic                                      Pos%  Miss%   ImgQ Type
+  ------------------------------------------------------------------------
+  [0] Kisumu Lakeside (Kenya)                   16%    5%   0.90   rural_high_burden
+  [1] Northern Uganda Regional                  22%   20%   0.55   rural_high_burden
+  [2] Lagos Teaching Hospital (Nigeria)         15%    2%   0.97   urban
+  [3] Upper West Ghana District                 19%   15%   0.72   rural_high_burden
+  [4] Kigali Reference (Rwanda)                 12%    3%   0.93   urban
+  [5] Lindi District (Tanzania)                 16%   25%   0.50   rural_high_burden
+  [6] Lusaka District (Zambia)                  14%    8%   0.85   urban
+  [7] Dakar Outpost (Senegal)                   10%   10%   0.78   urban
+  [8] Oromia Regional (Ethiopia)                15%   30%   0.45   rural_high_burden
+  [9] Nampula Province (Mozambique)             17%   12%   0.75   rural_high_burden
+
+=================================================================
+  STARTING FEDERATED TRAINING
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 1/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.406  auc=0.667  f1=0.578
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.469  auc=0.439  f1=0.622
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.85  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.381  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.72  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.750  auc=0.575  f1=0.200
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (11.0% of total)
+    [1] weight = 124 × 0.768 = 95.3  (8.9% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.848 = 105.1  (9.9% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.725 = 89.9  (8.4% of total)
+    [6] weight = 124 × 0.923 = 114.4  (10.7% of total)
+    [7] weight = 124 × 0.890 = 110.3  (10.3% of total)
+    [8] weight = 124 × 0.686 = 85.0  (8.0% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7500  auc=0.8391  f1=0.4444  sens=0.7111
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 1 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8391
+  Global Model Accuracy: 0.7500
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1576  1.000  0.545   38.58 🪙
+  Northern Uganda Regional            +0.0687  1.000  0.488   32.44 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.0959  1.000  0.600   35.75 🪙
+  Upper West Ghana District           +0.0959  1.000  0.600   35.75 🪙
+  Kigali Reference (Rwanda)           +0.0959  1.000  0.430   33.77 🪙
+  Lindi District (Tanzania)           +0.0959  1.000  0.600   35.75 🪙
+  Lusaka District (Zambia)            +0.1024  1.000  0.570   35.01 🪙
+  Dakar Outpost (Senegal)             +0.0959  1.000  0.600   35.75 🪙
+  Oromia Regional (Ethiopia)          +0.0959  1.000  0.600   35.75 🪙
+  Nampula Province (Mozambique)       +0.0959  1.000  0.600   35.75 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)                38.58 🪙
+  Northern Uganda Regional               32.44 🪙
+  Lagos Teaching Hospital (Nigeria)      35.75 🪙
+  Upper West Ghana District              35.75 🪙
+  Kigali Reference (Rwanda)              33.77 🪙
+  Lindi District (Tanzania)              35.75 🪙
+  Lusaka District (Zambia)               35.01 🪙
+  Dakar Outpost (Senegal)                35.75 🪙
+  Oromia Regional (Ethiopia)             35.75 🪙
+  Nampula Province (Mozambique)          35.75 🪙
+
+  🔗 Block #1 sealed
+     Hash: 792da1b0be47bdb2...84480e71
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 2/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.469  auc=0.567  f1=0.622
+    [1] Northern Uganda Regional                   conf=0.78  acc=0.438  auc=0.612  f1=0.591
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.85  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.421  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.73  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.656  auc=0.540  f1=0.154
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (11.0% of total)
+    [1] weight = 124 × 0.780 = 96.8  (9.0% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.852 = 105.6  (9.9% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.729 = 90.4  (8.5% of total)
+    [6] weight = 124 × 0.923 = 114.4  (10.7% of total)
+    [7] weight = 124 × 0.886 = 109.8  (10.3% of total)
+    [8] weight = 124 × 0.686 = 85.0  (8.0% of total)
+    [9] weight = 124 × 0.873 = 108.2  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7500  auc=0.8271  f1=0.4805  sens=0.8222
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 2 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8271
+  Global Model Accuracy: 0.7500
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1550  1.000  0.539   38.34 🪙
+  Northern Uganda Regional            +0.0986  1.000  0.538   34.98 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.1035  1.000  0.600   36.21 🪙
+  Upper West Ghana District           +0.1035  1.000  0.600   36.21 🪙
+  Kigali Reference (Rwanda)           +0.0926  1.000  0.447   33.82 🪙
+  Lindi District (Tanzania)           +0.1035  1.000  0.600   36.21 🪙
+  Lusaka District (Zambia)            +0.0326  1.000  0.509   29.91 🪙
+  Dakar Outpost (Senegal)             +0.1035  1.000  0.600   36.21 🪙
+  Oromia Regional (Ethiopia)          +0.1035  1.000  0.600   36.21 🪙
+  Nampula Province (Mozambique)       +0.1035  1.000  0.600   36.21 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)                76.92 🪙
+  Northern Uganda Regional               67.42 🪙
+  Lagos Teaching Hospital (Nigeria)      71.97 🪙
+  Upper West Ghana District              71.97 🪙
+  Kigali Reference (Rwanda)              67.59 🪙
+  Lindi District (Tanzania)              71.97 🪙
+  Lusaka District (Zambia)               64.92 🪙
+  Dakar Outpost (Senegal)                71.97 🪙
+  Oromia Regional (Ethiopia)             71.97 🪙
+  Nampula Province (Mozambique)          71.97 🪙
+
+  🔗 Block #2 sealed
+     Hash: d6e8bdbeb64db970...0ae07c20
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 3/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.438  auc=0.405  f1=0.609
+    [1] Northern Uganda Regional                   conf=0.78  acc=0.500  auc=0.573  f1=0.619
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.86  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.482  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.73  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.844  auc=0.483  f1=0.286
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (10.9% of total)
+    [1] weight = 124 × 0.776 = 96.3  (9.0% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.856 = 106.1  (9.9% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.733 = 90.9  (8.5% of total)
+    [6] weight = 124 × 0.923 = 114.4  (10.7% of total)
+    [7] weight = 124 × 0.894 = 110.8  (10.3% of total)
+    [8] weight = 124 × 0.694 = 86.0  (8.0% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7750  auc=0.8339  f1=0.3333  sens=0.4000
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 3 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8339
+  Global Model Accuracy: 0.7750
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1198  1.000  0.459   35.02 🪙
+  Northern Uganda Regional            +0.0870  1.000  0.553   34.51 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.1137  1.000  0.600   36.82 🪙
+  Upper West Ghana District           +0.1137  1.000  0.600   36.82 🪙
+  Kigali Reference (Rwanda)           +0.0855  1.000  0.471   33.75 🪙
+  Lindi District (Tanzania)           +0.1137  1.000  0.600   36.82 🪙
+  Lusaka District (Zambia)            -0.0253  1.000  0.588   29.13 🪙
+  Dakar Outpost (Senegal)             +0.1137  1.000  0.600   36.82 🪙
+  Oromia Regional (Ethiopia)          +0.1137  1.000  0.600   36.82 🪙
+  Nampula Province (Mozambique)       +0.1137  1.000  0.600   36.82 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               111.95 🪙
+  Northern Uganda Regional              101.93 🪙
+  Lagos Teaching Hospital (Nigeria)     108.79 🪙
+  Upper West Ghana District             108.79 🪙
+  Kigali Reference (Rwanda)             101.34 🪙
+  Lindi District (Tanzania)             108.79 🪙
+  Lusaka District (Zambia)               94.05 🪙
+  Dakar Outpost (Senegal)               108.79 🪙
+  Oromia Regional (Ethiopia)            108.79 🪙
+  Nampula Province (Mozambique)         108.79 🪙
+
+  🔗 Block #3 sealed
+     Hash: 7e40d6ed7297f862...2d1332fc
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 4/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.438  auc=0.627  f1=0.609
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.500  auc=0.580  f1=0.636
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.84  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.571  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.74  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.719  auc=0.517  f1=0.182
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.950 = 117.8  (11.0% of total)
+    [1] weight = 124 × 0.772 = 95.8  (9.0% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.843 = 104.6  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.741 = 91.9  (8.6% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.7% of total)
+    [7] weight = 124 × 0.886 = 109.8  (10.3% of total)
+    [8] weight = 124 × 0.690 = 85.5  (8.0% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7719  auc=0.8625  f1=0.4511  sens=0.6667
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 4 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8625
+  Global Model Accuracy: 0.7719
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1049  1.000  0.547   35.46 🪙
+  Northern Uganda Regional            +0.0743  1.000  0.559   33.85 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.0955  1.000  0.600   35.73 🪙
+  Upper West Ghana District           +0.0955  1.000  0.600   35.73 🪙
+  Kigali Reference (Rwanda)           +0.1323  1.000  0.506   37.10 🪙
+  Lindi District (Tanzania)           +0.0955  1.000  0.600   35.73 🪙
+  Lusaka District (Zambia)            +0.1152  1.000  0.531   35.19 🪙
+  Dakar Outpost (Senegal)             +0.0955  1.000  0.600   35.73 🪙
+  Oromia Regional (Ethiopia)          +0.0955  1.000  0.600   35.73 🪙
+  Nampula Province (Mozambique)       +0.0955  1.000  0.600   35.73 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               147.41 🪙
+  Northern Uganda Regional              135.79 🪙
+  Lagos Teaching Hospital (Nigeria)     144.52 🪙
+  Upper West Ghana District             144.52 🪙
+  Kigali Reference (Rwanda)             138.43 🪙
+  Lindi District (Tanzania)             144.52 🪙
+  Lusaka District (Zambia)              129.24 🪙
+  Dakar Outpost (Senegal)               144.52 🪙
+  Oromia Regional (Ethiopia)            144.52 🪙
+  Nampula Province (Mozambique)         144.52 🪙
+
+  🔗 Block #4 sealed
+     Hash: 9511b2fc444948cd...9f409877
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 5/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.438  auc=0.448  f1=0.609
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.500  auc=0.508  f1=0.636
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.86  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.437  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.72  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.781  auc=0.586  f1=0.222
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.70  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.950 = 117.8  (11.0% of total)
+    [1] weight = 124 × 0.772 = 95.8  (8.9% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.856 = 106.1  (9.9% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.725 = 89.9  (8.4% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.6% of total)
+    [7] weight = 124 × 0.886 = 109.8  (10.3% of total)
+    [8] weight = 124 × 0.702 = 87.0  (8.1% of total)
+    [9] weight = 124 × 0.873 = 108.2  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7594  auc=0.8536  f1=0.4380  sens=0.6667
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 5 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8536
+  Global Model Accuracy: 0.7594
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1436  1.000  0.476   36.71 🪙
+  Northern Uganda Regional            +0.1547  1.000  0.530   38.24 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.0961  1.000  0.600   35.77 🪙
+  Upper West Ghana District           +0.0961  1.000  0.600   35.77 🪙
+  Kigali Reference (Rwanda)           +0.0868  1.000  0.453   33.56 🪙
+  Lindi District (Tanzania)           +0.0961  1.000  0.600   35.77 🪙
+  Lusaka District (Zambia)            +0.0383  1.000  0.591   31.49 🪙
+  Dakar Outpost (Senegal)             +0.0961  1.000  0.600   35.77 🪙
+  Oromia Regional (Ethiopia)          +0.0961  1.000  0.600   35.77 🪙
+  Nampula Province (Mozambique)       +0.0961  1.000  0.600   35.77 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               184.12 🪙
+  Northern Uganda Regional              174.03 🪙
+  Lagos Teaching Hospital (Nigeria)     180.29 🪙
+  Upper West Ghana District             180.29 🪙
+  Kigali Reference (Rwanda)             171.99 🪙
+  Lindi District (Tanzania)             180.29 🪙
+  Lusaka District (Zambia)              160.73 🪙
+  Dakar Outpost (Senegal)               180.29 🪙
+  Oromia Regional (Ethiopia)            180.29 🪙
+  Nampula Province (Mozambique)         180.29 🪙
+
+  🔗 Block #5 sealed
+     Hash: ef935954a3db3321...7c0eb000
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 6/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.594  auc=0.806  f1=0.667
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.469  auc=0.443  f1=0.622
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.85  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.417  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.73  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.531  auc=0.333  f1=0.118
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (11.0% of total)
+    [1] weight = 124 × 0.768 = 95.3  (8.9% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.848 = 105.1  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.729 = 90.4  (8.5% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.7% of total)
+    [7] weight = 124 × 0.890 = 110.3  (10.3% of total)
+    [8] weight = 124 × 0.694 = 86.0  (8.1% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7500  auc=0.7345  f1=0.4203  sens=0.6444
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 6 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.7345
+  Global Model Accuracy: 0.7500
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.0825  1.000  0.693   36.30 🪙
+  Northern Uganda Regional            +0.1021  1.000  0.489   34.46 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.1047  1.000  0.600   36.28 🪙
+  Upper West Ghana District           +0.1047  1.000  0.600   36.28 🪙
+  Kigali Reference (Rwanda)           +0.0595  1.000  0.445   31.80 🪙
+  Lindi District (Tanzania)           +0.1047  1.000  0.600   36.28 🪙
+  Lusaka District (Zambia)            +0.1278  1.000  0.369   33.52 🪙
+  Dakar Outpost (Senegal)             +0.1047  1.000  0.600   36.28 🪙
+  Oromia Regional (Ethiopia)          +0.1047  1.000  0.600   36.28 🪙
+  Nampula Province (Mozambique)       +0.1047  1.000  0.600   36.28 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               220.43 🪙
+  Northern Uganda Regional              208.49 🪙
+  Lagos Teaching Hospital (Nigeria)     216.57 🪙
+  Upper West Ghana District             216.57 🪙
+  Kigali Reference (Rwanda)             203.80 🪙
+  Lindi District (Tanzania)             216.57 🪙
+  Lusaka District (Zambia)              194.25 🪙
+  Dakar Outpost (Senegal)               216.57 🪙
+  Oromia Regional (Ethiopia)            216.57 🪙
+  Nampula Province (Mozambique)         216.57 🪙
+
+  🔗 Block #6 sealed
+     Hash: ad8a47672d819ba9...98825f91
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 7/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.406  auc=0.575  f1=0.558
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.500  auc=0.567  f1=0.636
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.84  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.433  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.73  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.656  auc=0.713  f1=0.154
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (11.0% of total)
+    [1] weight = 124 × 0.768 = 95.3  (8.9% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.843 = 104.6  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.733 = 90.9  (8.5% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.7% of total)
+    [7] weight = 124 × 0.886 = 109.8  (10.3% of total)
+    [8] weight = 124 × 0.694 = 86.0  (8.1% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7594  auc=0.8477  f1=0.4380  sens=0.6667
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 7 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8477
+  Global Model Accuracy: 0.7594
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.0738  1.000  0.504   32.95 🪙
+  Northern Uganda Regional            +0.0991  1.000  0.554   35.26 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.1032  1.000  0.600   36.19 🪙
+  Upper West Ghana District           +0.1032  1.000  0.600   36.19 🪙
+  Kigali Reference (Rwanda)           +0.1062  1.000  0.451   34.70 🪙
+  Lindi District (Tanzania)           +0.1032  1.000  0.600   36.19 🪙
+  Lusaka District (Zambia)            +0.1015  1.000  0.578   35.08 🪙
+  Dakar Outpost (Senegal)             +0.1032  1.000  0.600   36.19 🪙
+  Oromia Regional (Ethiopia)          +0.1032  1.000  0.600   36.19 🪙
+  Nampula Province (Mozambique)       +0.1032  1.000  0.600   36.19 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               253.37 🪙
+  Northern Uganda Regional              243.75 🪙
+  Lagos Teaching Hospital (Nigeria)     252.76 🪙
+  Upper West Ghana District             252.76 🪙
+  Kigali Reference (Rwanda)             238.50 🪙
+  Lindi District (Tanzania)             252.76 🪙
+  Lusaka District (Zambia)              229.34 🪙
+  Dakar Outpost (Senegal)               252.76 🪙
+  Oromia Regional (Ethiopia)            252.76 🪙
+  Nampula Province (Mozambique)         252.76 🪙
+
+  🔗 Block #7 sealed
+     Hash: 28b48c31336ed61b...43e518e2
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 8/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.469  auc=0.722  f1=0.622
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.375  auc=0.475  f1=0.545
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.85  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.490  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.73  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.594  auc=0.644  f1=0.235
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.950 = 117.8  (11.0% of total)
+    [1] weight = 124 × 0.768 = 95.3  (8.9% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.852 = 105.6  (9.9% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.729 = 90.4  (8.5% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.7% of total)
+    [7] weight = 124 × 0.886 = 109.8  (10.3% of total)
+    [8] weight = 124 × 0.690 = 85.5  (8.0% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7469  auc=0.8449  f1=0.4088  sens=0.6222
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 8 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8449
+  Global Model Accuracy: 0.7469
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.0332  1.000  0.601   31.96 🪙
+  Northern Uganda Regional            +0.1054  1.000  0.449   34.05 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.1159  1.000  0.600   36.95 🪙
+  Upper West Ghana District           +0.1159  1.000  0.600   36.95 🪙
+  Kigali Reference (Rwanda)           +0.1254  1.000  0.474   36.20 🪙
+  Lindi District (Tanzania)           +0.1159  1.000  0.600   36.95 🪙
+  Lusaka District (Zambia)            +0.0406  1.000  0.542   30.88 🪙
+  Dakar Outpost (Senegal)             +0.1159  1.000  0.600   36.95 🪙
+  Oromia Regional (Ethiopia)          +0.1159  1.000  0.600   36.95 🪙
+  Nampula Province (Mozambique)       +0.1159  1.000  0.600   36.95 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               285.34 🪙
+  Northern Uganda Regional              277.80 🪙
+  Lagos Teaching Hospital (Nigeria)     289.72 🪙
+  Upper West Ghana District             289.72 🪙
+  Kigali Reference (Rwanda)             274.70 🪙
+  Lindi District (Tanzania)             289.72 🪙
+  Lusaka District (Zambia)              260.22 🪙
+  Dakar Outpost (Senegal)               289.72 🪙
+  Oromia Regional (Ethiopia)            289.72 🪙
+  Nampula Province (Mozambique)         289.72 🪙
+
+  🔗 Block #8 sealed
+     Hash: f7954ffcee5465fa...82c1ed81
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 9/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.406  auc=0.361  f1=0.578
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.469  auc=0.631  f1=0.622
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.84  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.567  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.72  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.812  auc=0.471  f1=0.250
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (11.0% of total)
+    [1] weight = 124 × 0.772 = 95.8  (9.0% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.843 = 104.6  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.725 = 89.9  (8.4% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.7% of total)
+    [7] weight = 124 × 0.894 = 110.8  (10.4% of total)
+    [8] weight = 124 × 0.690 = 85.5  (8.0% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.8063  auc=0.8393  f1=0.3800  sens=0.4222
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 9 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8393
+  Global Model Accuracy: 0.8063
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1345  1.000  0.422   35.36 🪙
+  Northern Uganda Regional            +0.0976  1.000  0.565   35.32 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.1055  1.000  0.600   36.33 🪙
+  Upper West Ghana District           +0.1055  1.000  0.600   36.33 🪙
+  Kigali Reference (Rwanda)           +0.1313  1.000  0.505   37.01 🪙
+  Lindi District (Tanzania)           +0.1055  1.000  0.600   36.33 🪙
+  Lusaka District (Zambia)            -0.0035  1.000  0.564   28.77 🪙
+  Dakar Outpost (Senegal)             +0.1055  1.000  0.600   36.33 🪙
+  Oromia Regional (Ethiopia)          +0.1055  1.000  0.600   36.33 🪙
+  Nampula Province (Mozambique)       +0.1055  1.000  0.600   36.33 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               320.70 🪙
+  Northern Uganda Regional              313.12 🪙
+  Lagos Teaching Hospital (Nigeria)     326.05 🪙
+  Upper West Ghana District             326.05 🪙
+  Kigali Reference (Rwanda)             311.71 🪙
+  Lindi District (Tanzania)             326.05 🪙
+  Lusaka District (Zambia)              288.99 🪙
+  Dakar Outpost (Senegal)               326.05 🪙
+  Oromia Regional (Ethiopia)            326.05 🪙
+  Nampula Province (Mozambique)         326.05 🪙
+
+  🔗 Block #9 sealed
+     Hash: fdcb26a0b0c42d34...35bba43f
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 10/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.438  auc=0.643  f1=0.609
+    [1] Northern Uganda Regional                   conf=0.78  acc=0.469  auc=0.514  f1=0.622
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.85  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.324  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.72  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.93  acc=0.906  auc=0.713  f1=0.000
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (11.0% of total)
+    [1] weight = 124 × 0.776 = 96.3  (9.0% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.848 = 105.1  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.725 = 89.9  (8.4% of total)
+    [6] weight = 124 × 0.931 = 115.4  (10.8% of total)
+    [7] weight = 124 × 0.886 = 109.8  (10.3% of total)
+    [8] weight = 124 × 0.694 = 86.0  (8.0% of total)
+    [9] weight = 124 × 0.873 = 108.2  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7531  auc=0.8288  f1=0.4234  sens=0.6444
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 10 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8288
+  Global Model Accuracy: 0.7531
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1688  1.000  0.554   39.39 🪙
+  Northern Uganda Regional            +0.1225  1.000  0.517   36.11 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.0918  1.000  0.600   35.51 🪙
+  Upper West Ghana District           +0.0918  1.000  0.600   35.51 🪙
+  Kigali Reference (Rwanda)           +0.1189  1.000  0.408   34.81 🪙
+  Lindi District (Tanzania)           +0.0918  1.000  0.600   35.51 🪙
+  Lusaka District (Zambia)            +0.0389  1.000  0.648   32.36 🪙
+  Dakar Outpost (Senegal)             +0.0918  1.000  0.600   35.51 🪙
+  Oromia Regional (Ethiopia)          +0.0918  1.000  0.600   35.51 🪙
+  Nampula Province (Mozambique)       +0.0918  1.000  0.600   35.51 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               360.09 🪙
+  Northern Uganda Regional              349.23 🪙
+  Lagos Teaching Hospital (Nigeria)     361.56 🪙
+  Upper West Ghana District             361.56 🪙
+  Kigali Reference (Rwanda)             346.52 🪙
+  Lindi District (Tanzania)             361.56 🪙
+  Lusaka District (Zambia)              321.35 🪙
+  Dakar Outpost (Senegal)               361.56 🪙
+  Oromia Regional (Ethiopia)            361.56 🪙
+  Nampula Province (Mozambique)         361.56 🪙
+
+  🔗 Block #10 sealed
+     Hash: 9db587625ba28d19...5779cb85
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 11/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.531  auc=0.480  f1=0.595
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.500  auc=0.455  f1=0.556
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.85  acc=0.969  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.389  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.72  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.875  auc=0.322  f1=0.000
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.88  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (11.0% of total)
+    [1] weight = 124 × 0.768 = 95.3  (8.9% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.848 = 105.1  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.725 = 89.9  (8.4% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.7% of total)
+    [7] weight = 124 × 0.894 = 110.8  (10.4% of total)
+    [8] weight = 124 × 0.694 = 86.0  (8.1% of total)
+    [9] weight = 124 × 0.877 = 108.7  (10.2% of total)
+
+  [SERVER] Global model: acc=0.7594  auc=0.8450  f1=0.4211  sens=0.6222
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 11 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8450
+  Global Model Accuracy: 0.7594
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.0954  1.000  0.523   34.53 🪙
+  Northern Uganda Regional            +0.0746  1.000  0.493   32.87 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.1122  1.000  0.600   36.73 🪙
+  Upper West Ghana District           +0.1122  1.000  0.588   36.54 🪙
+  Kigali Reference (Rwanda)           +0.1214  1.000  0.433   35.35 🪙
+  Lindi District (Tanzania)           +0.1122  1.000  0.600   36.73 🪙
+  Lusaka District (Zambia)            +0.0356  1.000  0.479   29.63 🪙
+  Dakar Outpost (Senegal)             +0.1122  1.000  0.600   36.73 🪙
+  Oromia Regional (Ethiopia)          +0.1122  1.000  0.600   36.73 🪙
+  Nampula Province (Mozambique)       +0.1122  1.000  0.600   36.73 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               394.63 🪙
+  Northern Uganda Regional              382.10 🪙
+  Lagos Teaching Hospital (Nigeria)     398.29 🪙
+  Upper West Ghana District             398.10 🪙
+  Kigali Reference (Rwanda)             381.87 🪙
+  Lindi District (Tanzania)             398.29 🪙
+  Lusaka District (Zambia)              350.98 🪙
+  Dakar Outpost (Senegal)               398.29 🪙
+  Oromia Regional (Ethiopia)            398.29 🪙
+  Nampula Province (Mozambique)         398.29 🪙
+
+  🔗 Block #11 sealed
+     Hash: 951f7ccb6481e750...40a33069
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 12/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.469  auc=0.452  f1=0.605
+    [1] Northern Uganda Regional                   conf=0.78  acc=0.438  auc=0.473  f1=0.591
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.84  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.287  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.72  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.594  auc=0.425  f1=0.133
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.950 = 117.8  (11.0% of total)
+    [1] weight = 124 × 0.784 = 97.3  (9.1% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.843 = 104.6  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.725 = 89.9  (8.4% of total)
+    [6] weight = 124 × 0.923 = 114.4  (10.7% of total)
+    [7] weight = 124 × 0.890 = 110.3  (10.3% of total)
+    [8] weight = 124 × 0.690 = 85.5  (8.0% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7562  auc=0.7748  f1=0.4348  sens=0.6667
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 12 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.7748
+  Global Model Accuracy: 0.7562
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1050  1.000  0.489   34.60 🪙
+  Northern Uganda Regional            +0.1092  1.000  0.482   34.78 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.0993  1.000  0.600   35.96 🪙
+  Upper West Ghana District           +0.0993  1.000  0.600   35.96 🪙
+  Kigali Reference (Rwanda)           +0.1241  1.000  0.393   34.90 🪙
+  Lindi District (Tanzania)           +0.0993  1.000  0.600   35.96 🪙
+  Lusaka District (Zambia)            +0.0661  1.000  0.434   30.79 🪙
+  Dakar Outpost (Senegal)             +0.0993  1.000  0.600   35.96 🪙
+  Oromia Regional (Ethiopia)          +0.0993  1.000  0.600   35.96 🪙
+  Nampula Province (Mozambique)       +0.0993  1.000  0.600   35.96 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               429.22 🪙
+  Northern Uganda Regional              416.89 🪙
+  Lagos Teaching Hospital (Nigeria)     434.24 🪙
+  Upper West Ghana District             434.06 🪙
+  Kigali Reference (Rwanda)             416.77 🪙
+  Lindi District (Tanzania)             434.24 🪙
+  Lusaka District (Zambia)              381.78 🪙
+  Dakar Outpost (Senegal)               434.24 🪙
+  Oromia Regional (Ethiopia)            434.24 🪙
+  Nampula Province (Mozambique)         434.24 🪙
+
+  🔗 Block #12 sealed
+     Hash: 895a8bc93e6de4cf...5ab851a0
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 13/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.438  auc=0.528  f1=0.609
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.469  auc=0.559  f1=0.622
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.85  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.438  auc=0.640  f1=0.591
+    [5] Lindi District (Tanzania)                  conf=0.73  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.875  auc=0.471  f1=0.000
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.70  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.950 = 117.8  (11.0% of total)
+    [1] weight = 124 × 0.772 = 95.8  (8.9% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.852 = 105.6  (9.9% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.729 = 90.4  (8.4% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.6% of total)
+    [7] weight = 124 × 0.890 = 110.3  (10.3% of total)
+    [8] weight = 124 × 0.702 = 87.0  (8.1% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7500  auc=0.8317  f1=0.4366  sens=0.6889
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 13 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8317
+  Global Model Accuracy: 0.7500
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1160  1.000  0.508   35.53 🪙
+  Northern Uganda Regional            +0.0693  1.000  0.535   33.19 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.1036  1.000  0.600   36.22 🪙
+  Upper West Ghana District           +0.1036  1.000  0.600   36.22 🪙
+  Kigali Reference (Rwanda)           +0.1504  1.000  0.549   38.82 🪙
+  Lindi District (Tanzania)           +0.1036  1.000  0.600   36.22 🪙
+  Lusaka District (Zambia)            +0.0426  1.000  0.538   30.95 🪙
+  Dakar Outpost (Senegal)             +0.1036  1.000  0.600   36.22 🪙
+  Oromia Regional (Ethiopia)          +0.1036  1.000  0.600   36.22 🪙
+  Nampula Province (Mozambique)       +0.1036  1.000  0.600   36.22 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               464.76 🪙
+  Northern Uganda Regional              450.08 🪙
+  Lagos Teaching Hospital (Nigeria)     470.46 🪙
+  Upper West Ghana District             470.27 🪙
+  Kigali Reference (Rwanda)             455.59 🪙
+  Lindi District (Tanzania)             470.46 🪙
+  Lusaka District (Zambia)              412.72 🪙
+  Dakar Outpost (Senegal)               470.46 🪙
+  Oromia Regional (Ethiopia)            470.46 🪙
+  Nampula Province (Mozambique)         470.46 🪙
+
+  🔗 Block #13 sealed
+     Hash: ab4b7802d476478b...c49802f6
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 14/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.500  auc=0.528  f1=0.636
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.562  auc=0.471  f1=0.682
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.84  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.409  f1=0.558
+    [5] Lindi District (Tanzania)                  conf=0.73  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.688  auc=0.230  f1=0.000
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.950 = 117.8  (11.0% of total)
+    [1] weight = 124 × 0.768 = 95.3  (8.9% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.843 = 104.6  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.733 = 90.9  (8.5% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.7% of total)
+    [7] weight = 124 × 0.886 = 109.8  (10.3% of total)
+    [8] weight = 124 × 0.694 = 86.0  (8.1% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7500  auc=0.8312  f1=0.4366  sens=0.6889
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 14 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8312
+  Global Model Accuracy: 0.7500
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1184  1.000  0.538   36.14 🪙
+  Northern Uganda Regional            +0.0707  1.000  0.550   33.49 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.1087  1.000  0.600   36.52 🪙
+  Upper West Ghana District           +0.1087  1.000  0.600   36.52 🪙
+  Kigali Reference (Rwanda)           +0.1538  1.000  0.438   37.36 🪙
+  Lindi District (Tanzania)           +0.1087  1.000  0.600   36.52 🪙
+  Lusaka District (Zambia)            +0.0050  1.000  0.367   26.12 🪙
+  Dakar Outpost (Senegal)             +0.1087  1.000  0.600   36.52 🪙
+  Oromia Regional (Ethiopia)          +0.1087  1.000  0.600   36.52 🪙
+  Nampula Province (Mozambique)       +0.1087  1.000  0.600   36.52 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               500.89 🪙
+  Northern Uganda Regional              483.56 🪙
+  Lagos Teaching Hospital (Nigeria)     506.98 🪙
+  Upper West Ghana District             506.79 🪙
+  Kigali Reference (Rwanda)             492.95 🪙
+  Lindi District (Tanzania)             506.98 🪙
+  Lusaka District (Zambia)              438.84 🪙
+  Dakar Outpost (Senegal)               506.98 🪙
+  Oromia Regional (Ethiopia)            506.98 🪙
+  Nampula Province (Mozambique)         506.98 🪙
+
+  🔗 Block #14 sealed
+     Hash: 86992a4942fc09ce...0feaf053
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 15/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.500  auc=0.599  f1=0.600
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.500  auc=0.375  f1=0.636
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.84  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.235  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.73  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.562  auc=0.241  f1=0.125
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (11.0% of total)
+    [1] weight = 124 × 0.768 = 95.3  (8.9% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.843 = 104.6  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.733 = 90.9  (8.5% of total)
+    [6] weight = 124 × 0.923 = 114.4  (10.7% of total)
+    [7] weight = 124 × 0.886 = 109.8  (10.3% of total)
+    [8] weight = 124 × 0.690 = 85.5  (8.0% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7531  auc=0.8488  f1=0.4234  sens=0.6444
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 15 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8488
+  Global Model Accuracy: 0.7531
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1010  1.000  0.560   35.41 🪙
+  Northern Uganda Regional            +0.0741  1.000  0.477   32.60 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.0999  1.000  0.600   35.99 🪙
+  Upper West Ghana District           +0.0999  1.000  0.600   35.99 🪙
+  Kigali Reference (Rwanda)           +0.0582  1.000  0.372   30.63 🪙
+  Lindi District (Tanzania)           +0.0999  1.000  0.600   35.99 🪙
+  Lusaka District (Zambia)            +0.1674  1.000  0.347   35.56 🪙
+  Dakar Outpost (Senegal)             +0.0999  1.000  0.600   35.99 🪙
+  Oromia Regional (Ethiopia)          +0.0999  1.000  0.600   35.99 🪙
+  Nampula Province (Mozambique)       +0.0999  1.000  0.600   35.99 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               536.31 🪙
+  Northern Uganda Regional              516.16 🪙
+  Lagos Teaching Hospital (Nigeria)     542.97 🪙
+  Upper West Ghana District             542.79 🪙
+  Kigali Reference (Rwanda)             523.58 🪙
+  Lindi District (Tanzania)             542.97 🪙
+  Lusaka District (Zambia)              474.40 🪙
+  Dakar Outpost (Senegal)               542.97 🪙
+  Oromia Regional (Ethiopia)            542.97 🪙
+  Nampula Province (Mozambique)         542.97 🪙
+
+  🔗 Block #15 sealed
+     Hash: f147712ca48b5bd3...80b83f6e
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 16/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.469  auc=0.425  f1=0.622
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.531  auc=0.714  f1=0.667
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.84  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.417  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.73  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.781  auc=0.724  f1=0.000
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.70  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.88  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (11.0% of total)
+    [1] weight = 124 × 0.772 = 95.8  (8.9% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.843 = 104.6  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.733 = 90.9  (8.5% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.6% of total)
+    [7] weight = 124 × 0.890 = 110.3  (10.3% of total)
+    [8] weight = 124 × 0.702 = 87.0  (8.1% of total)
+    [9] weight = 124 × 0.877 = 108.7  (10.2% of total)
+
+  [SERVER] Global model: acc=0.7656  auc=0.8605  f1=0.4526  sens=0.6889
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 16 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8605
+  Global Model Accuracy: 0.7656
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.0978  1.000  0.482   34.05 🪙
+  Northern Uganda Regional            +0.1222  1.000  0.631   37.80 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.0917  1.000  0.600   35.50 🪙
+  Upper West Ghana District           +0.0917  1.000  0.600   35.50 🪙
+  Kigali Reference (Rwanda)           +0.1087  1.000  0.445   34.76 🪙
+  Lindi District (Tanzania)           +0.0917  1.000  0.600   35.50 🪙
+  Lusaka District (Zambia)            +0.1210  1.000  0.602   36.61 🪙
+  Dakar Outpost (Senegal)             +0.0917  1.000  0.600   35.50 🪙
+  Oromia Regional (Ethiopia)          +0.0917  1.000  0.600   35.50 🪙
+  Nampula Province (Mozambique)       +0.0917  1.000  0.600   35.50 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               570.36 🪙
+  Northern Uganda Regional              553.96 🪙
+  Lagos Teaching Hospital (Nigeria)     578.48 🪙
+  Upper West Ghana District             578.29 🪙
+  Kigali Reference (Rwanda)             558.34 🪙
+  Lindi District (Tanzania)             578.48 🪙
+  Lusaka District (Zambia)              511.01 🪙
+  Dakar Outpost (Senegal)               578.48 🪙
+  Oromia Regional (Ethiopia)            578.48 🪙
+  Nampula Province (Mozambique)         578.48 🪙
+
+  🔗 Block #16 sealed
+     Hash: 2506d6b774150caf...1c35f1df
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 17/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.469  auc=0.532  f1=0.605
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.438  auc=0.376  f1=0.591
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.84  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.587  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.74  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.688  auc=0.172  f1=0.000
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.70  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (11.0% of total)
+    [1] weight = 124 × 0.768 = 95.3  (8.9% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.843 = 104.6  (9.8% of total)
+    [4] weight = 124 × 0.971 = 120.4  (11.3% of total)
+    [5] weight = 124 × 0.737 = 91.4  (8.5% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.7% of total)
+    [7] weight = 124 × 0.890 = 110.3  (10.3% of total)
+    [8] weight = 124 × 0.698 = 86.5  (8.1% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.8438  auc=0.8576  f1=0.2424  sens=0.1778
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 17 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8576
+  Global Model Accuracy: 0.8438
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1359  1.000  0.521   36.92 🪙
+  Northern Uganda Regional            +0.0835  1.000  0.444   32.67 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.0956  1.000  0.600   35.73 🪙
+  Upper West Ghana District           +0.0956  1.000  0.600   35.73 🪙
+  Kigali Reference (Rwanda)           +0.0734  1.000  0.513   33.66 🪙
+  Lindi District (Tanzania)           +0.0956  1.000  0.600   35.73 🪙
+  Lusaka District (Zambia)            +0.1339  1.000  0.344   33.51 🪙
+  Dakar Outpost (Senegal)             +0.0956  1.000  0.600   35.73 🪙
+  Oromia Regional (Ethiopia)          +0.0956  1.000  0.600   35.73 🪙
+  Nampula Province (Mozambique)       +0.0956  1.000  0.600   35.73 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               607.28 🪙
+  Northern Uganda Regional              586.63 🪙
+  Lagos Teaching Hospital (Nigeria)     614.21 🪙
+  Upper West Ghana District             614.02 🪙
+  Kigali Reference (Rwanda)             592.00 🪙
+  Lindi District (Tanzania)             614.21 🪙
+  Lusaka District (Zambia)              544.52 🪙
+  Dakar Outpost (Senegal)               614.21 🪙
+  Oromia Regional (Ethiopia)            614.21 🪙
+  Nampula Province (Mozambique)         614.21 🪙
+
+  🔗 Block #17 sealed
+     Hash: 4150db883c832cd4...fb7d436d
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 18/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.469  auc=0.464  f1=0.585
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.562  auc=0.561  f1=0.682
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.85  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.486  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.74  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.469  auc=0.448  f1=0.105
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (11.0% of total)
+    [1] weight = 124 × 0.772 = 95.8  (9.0% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.848 = 105.1  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.737 = 91.4  (8.6% of total)
+    [6] weight = 124 × 0.923 = 114.4  (10.7% of total)
+    [7] weight = 124 × 0.886 = 109.8  (10.3% of total)
+    [8] weight = 124 × 0.690 = 85.5  (8.0% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7625  auc=0.8344  f1=0.4493  sens=0.6889
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 18 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8344
+  Global Model Accuracy: 0.7625
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1254  1.000  0.490   35.83 🪙
+  Northern Uganda Regional            +0.0524  1.000  0.586   32.93 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.0976  1.000  0.600   35.86 🪙
+  Upper West Ghana District           +0.0976  1.000  0.600   35.86 🪙
+  Kigali Reference (Rwanda)           +0.1473  1.000  0.472   37.48 🪙
+  Lindi District (Tanzania)           +0.0976  1.000  0.600   35.86 🪙
+  Lusaka District (Zambia)            +0.0892  1.000  0.388   31.49 🪙
+  Dakar Outpost (Senegal)             +0.0976  1.000  0.600   35.86 🪙
+  Oromia Regional (Ethiopia)          +0.0976  1.000  0.600   35.86 🪙
+  Nampula Province (Mozambique)       +0.0976  1.000  0.600   35.86 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               643.11 🪙
+  Northern Uganda Regional              619.56 🪙
+  Lagos Teaching Hospital (Nigeria)     650.07 🪙
+  Upper West Ghana District             649.88 🪙
+  Kigali Reference (Rwanda)             629.48 🪙
+  Lindi District (Tanzania)             650.07 🪙
+  Lusaka District (Zambia)              576.01 🪙
+  Dakar Outpost (Senegal)               650.07 🪙
+  Oromia Regional (Ethiopia)            650.07 🪙
+  Nampula Province (Mozambique)         650.07 🪙
+
+  🔗 Block #18 sealed
+     Hash: 74f707c13f7d14b4...aa48407c
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 19/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.469  auc=0.556  f1=0.585
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.406  auc=0.329  f1=0.537
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.85  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.360  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.73  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.375  auc=0.517  f1=0.091
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.946 = 117.3  (11.0% of total)
+    [1] weight = 124 × 0.772 = 95.8  (9.0% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.848 = 105.1  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.733 = 90.9  (8.5% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.7% of total)
+    [7] weight = 124 × 0.886 = 109.8  (10.3% of total)
+    [8] weight = 124 × 0.694 = 86.0  (8.1% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7312  auc=0.8593  f1=0.4691  sens=0.8444
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 19 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8593
+  Global Model Accuracy: 0.7312
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1280  1.000  0.527   36.54 🪙
+  Northern Uganda Regional            +0.0890  1.000  0.402   32.36 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.1131  1.000  0.600   36.78 🪙
+  Upper West Ghana District           +0.1131  1.000  0.600   36.78 🪙
+  Kigali Reference (Rwanda)           +0.0621  1.000  0.422   31.62 🪙
+  Lindi District (Tanzania)           +0.1131  1.000  0.600   36.78 🪙
+  Lusaka District (Zambia)            +0.0425  1.000  0.375   28.49 🪙
+  Dakar Outpost (Senegal)             +0.1131  1.000  0.600   36.78 🪙
+  Oromia Regional (Ethiopia)          +0.1131  1.000  0.600   36.78 🪙
+  Nampula Province (Mozambique)       +0.1131  1.000  0.600   36.78 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               679.65 🪙
+  Northern Uganda Regional              651.92 🪙
+  Lagos Teaching Hospital (Nigeria)     686.85 🪙
+  Upper West Ghana District             686.66 🪙
+  Kigali Reference (Rwanda)             661.10 🪙
+  Lindi District (Tanzania)             686.85 🪙
+  Lusaka District (Zambia)              604.50 🪙
+  Dakar Outpost (Senegal)               686.85 🪙
+  Oromia Regional (Ethiopia)            686.85 🪙
+  Nampula Province (Mozambique)         686.85 🪙
+
+  🔗 Block #19 sealed
+     Hash: 71689a00eecaed1e...3e4b4017
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  ROUND 20/20
+─────────────────────────────────────────────────────────────────
+
+  Local training (10 clinics)...
+    [0] Kisumu Lakeside (Kenya)                    conf=0.95  acc=0.438  auc=0.365  f1=0.591
+    [1] Northern Uganda Regional                   conf=0.77  acc=0.438  auc=0.545  f1=0.591
+    [2] Lagos Teaching Hospital (Nigeria)          conf=0.98  acc=1.000  auc=0.500  f1=0.000
+    [3] Upper West Ghana District                  conf=0.84  acc=1.000  auc=0.500  f1=0.000
+    [4] Kigali Reference (Rwanda)                  conf=0.97  acc=0.406  auc=0.482  f1=0.578
+    [5] Lindi District (Tanzania)                  conf=0.73  acc=1.000  auc=0.500  f1=0.000
+    [6] Lusaka District (Zambia)                   conf=0.92  acc=0.625  auc=0.506  f1=0.143
+    [7] Dakar Outpost (Senegal)                    conf=0.89  acc=1.000  auc=0.500  f1=0.000
+    [8] Oromia Regional (Ethiopia)                 conf=0.69  acc=1.000  auc=0.500  f1=0.000
+    [9] Nampula Province (Mozambique)              conf=0.87  acc=1.000  auc=0.500  f1=0.000
+
+  [SERVER] Quality-Weighted FedAvg...
+    [0] weight = 124 × 0.950 = 117.8  (11.0% of total)
+    [1] weight = 124 × 0.768 = 95.3  (8.9% of total)
+    [2] weight = 124 × 0.983 = 121.9  (11.4% of total)
+    [3] weight = 124 × 0.843 = 104.6  (9.8% of total)
+    [4] weight = 124 × 0.967 = 119.9  (11.2% of total)
+    [5] weight = 124 × 0.729 = 90.4  (8.5% of total)
+    [6] weight = 124 × 0.919 = 113.9  (10.7% of total)
+    [7] weight = 124 × 0.886 = 109.8  (10.3% of total)
+    [8] weight = 124 × 0.690 = 85.5  (8.0% of total)
+    [9] weight = 124 × 0.869 = 107.7  (10.1% of total)
+
+  [SERVER] Global model: acc=0.7531  auc=0.8319  f1=0.4317  sens=0.6667
+  [SERVER] Computing quality-weighted Shapley values (LOO)...
+
+=================================================================
+  📊 GOVERNANCE MODULE — ROUND 20 IP TOKEN ATTRIBUTION
+=================================================================
+  Global Model AUC-ROC : 0.8319
+  Global Model Accuracy: 0.7531
+
+  Clinic                               Shapley    Vol   Qual   Tokens
+  -----------------------------------------------------------------
+  Kisumu Lakeside (Kenya)             +0.1422  1.000  0.439   36.07 🪙
+  Northern Uganda Regional            +0.1704  1.000  0.511   38.89 🪙
+  Lagos Teaching Hospital (Nigeria)   +0.0973  1.000  0.600   35.84 🪙
+  Upper West Ghana District           +0.0973  1.000  0.600   35.84 🪙
+  Kigali Reference (Rwanda)           +0.0819  1.000  0.471   33.54 🪙
+  Lindi District (Tanzania)           +0.0973  1.000  0.600   35.84 🪙
+  Lusaka District (Zambia)            +0.0215  1.000  0.481   28.82 🪙
+  Dakar Outpost (Senegal)             +0.0973  1.000  0.600   35.84 🪙
+  Oromia Regional (Ethiopia)          +0.0973  1.000  0.600   35.84 🪙
+  Nampula Province (Mozambique)       +0.0973  1.000  0.600   35.84 🪙
+
+  💰 CUMULATIVE IP TOKEN BALANCES
+  ---------------------------------------------
+  Kisumu Lakeside (Kenya)               715.73 🪙
+  Northern Uganda Regional              690.81 🪙
+  Lagos Teaching Hospital (Nigeria)     722.69 🪙
+  Upper West Ghana District             722.50 🪙
+  Kigali Reference (Rwanda)             694.63 🪙
+  Lindi District (Tanzania)             722.69 🪙
+  Lusaka District (Zambia)              633.32 🪙
+  Dakar Outpost (Senegal)               722.69 🪙
+  Oromia Regional (Ethiopia)            722.69 🪙
+  Nampula Province (Mozambique)         722.69 🪙
+
+  🔗 Block #20 sealed
+     Hash: e89050a6629795d3...f733cdaa
+=================================================================
+
+=================================================================
+  FEDERATED TRAINING COMPLETE — FINAL REPORT
+=================================================================
+
+  GLOBAL MODEL PERFORMANCE OVER 20 ROUNDS:
+  Round      Accuracy    AUC-ROC       F1   Sensitivity
+  -----------------------------------------------------
+  1            0.7500     0.8391   0.4444        0.7111
+  2            0.7500     0.8271   0.4805        0.8222
+  3            0.7750     0.8339   0.3333        0.4000
+  4            0.7719     0.8625   0.4511        0.6667
+  5            0.7594     0.8536   0.4380        0.6667
+  6            0.7500     0.7345   0.4203        0.6444
+  7            0.7594     0.8477   0.4380        0.6667
+  8            0.7469     0.8449   0.4088        0.6222
+  9            0.8063     0.8393   0.3800        0.4222
+  10           0.7531     0.8288   0.4234        0.6444
+  11           0.7594     0.8450   0.4211        0.6222
+  12           0.7562     0.7748   0.4348        0.6667
+  13           0.7500     0.8317   0.4366        0.6889
+  14           0.7500     0.8312   0.4366        0.6889
+  15           0.7531     0.8488   0.4234        0.6444
+  16           0.7656     0.8605   0.4526        0.6889
+  17           0.8438     0.8576   0.2424        0.1778
+  18           0.7625     0.8344   0.4493        0.6889
+  19           0.7312     0.8593   0.4691        0.8444
+  20           0.7531     0.8319   0.4317        0.6667
+
+  DATA QUALITY vs SHAPLEY CONTRIBUTION:
+  Clinic                                       Conf   Shapley Interpretation
+  ------------------------------------------------------------------------
+  Kisumu Lakeside (Kenya)                     0.950   +0.1422  Beneficial  LOW MISS
+  Northern Uganda Regional                    0.768   +0.1704  Beneficial  HIGH MISS
+  Lagos Teaching Hospital (Nigeria)           0.983   +0.0973  Beneficial  LOW MISS
+  Upper West Ghana District                   0.843   +0.0973  Beneficial
+  Kigali Reference (Rwanda)                   0.967   +0.0819  Beneficial  LOW MISS
+  Lindi District (Tanzania)                   0.729   +0.0973  Beneficial  HIGH MISS
+  Lusaka District (Zambia)                    0.919   +0.0215  Beneficial
+  Dakar Outpost (Senegal)                     0.886   +0.0973  Beneficial
+  Oromia Regional (Ethiopia)                  0.690   +0.0973  Beneficial  HIGH MISS
+  Nampula Province (Mozambique)               0.869   +0.0973  Beneficial
+
+  FINAL IP TOKEN BALANCES:
+  Clinic                                       Tokens   Share%   Conf
+  --------------------------------------------------------------------
+  Kisumu Lakeside (Kenya)                     1028.86    10.1%  0.950
+  Northern Uganda Regional                     993.05     9.8%  0.768
+  Lagos Teaching Hospital (Nigeria)           1038.87    10.2%  0.983
+  Upper West Ghana District                   1038.60    10.2%  0.843
+  Kigali Reference (Rwanda)                    998.54     9.8%  0.967
+  Lindi District (Tanzania)                   1038.87    10.2%  0.729
+  Lusaka District (Zambia)                     910.40     9.0%  0.919
+  Dakar Outpost (Senegal)                     1038.87    10.2%  0.886
+  Oromia Regional (Ethiopia)                  1038.87    10.2%  0.690
+  Nampula Province (Mozambique)               1038.87    10.2%  0.869
+
+  Ledger Integrity: VALID
+  Total tokens issued: 7070.46
+
+  MODALITY ABLATION STUDY:
+  Config                      Accuracy    AUC-ROC       F1
+  -------------------------------------------------------
+  full_multimodal               0.7969     0.8943   0.5517
+  env_only                      0.7438     0.8945   0.5233
+  drug_only                     0.8500     0.4595   0.0000
+  imaging_only                  0.8531     0.5326   0.0000
+  no_imaging                    0.8000     0.8922   0.5733
+  no_drug                       0.7750     0.8832   0.5443
+  env_drug_only                 0.8000     0.8922   0.5733
+
+  TOP-10 PREDICTIVE FEATURES (Final Global Model):
+   1. precip_lag14_mm              0.6412  ███████████████████████████████████████████████████
+   2. precip_mm                    0.1074  ████████
+   3. img_feat_10                  0.0633  █████
+   4. precip_lag7_mm               0.0322  ██
+   5. resist_CQ                    0.0139  █
+   6. temp_min_c                   0.0113  
+   7. img_feat_29                  0.0110  
+   8. precip_lag21_mm              0.0095  
+   9. lai_hv                       0.0090  
+  10. img_feat_20                  0.0087  
+
+  Missing-indicator features in importance ranking:
+    mask_img_missing: 0.0035  (model is using absence-of-data as a signal)
+    mask_drug_missing: 0.0012  (model is using absence-of-data as a signal)
+    mask_env_missing: 0.0000  (model is using absence-of-data as a signal)
+
+  ROBUSTNESS ANALYSIS:
+  High-quality clinics (conf > 0.85):
+    Lagos Teaching Hospital (Nigeria)          conf=0.983  sv=+0.0973
+    Kigali Reference (Rwanda)                  conf=0.967  sv=+0.0819
+    Kisumu Lakeside (Kenya)                    conf=0.950  sv=+0.1422
+    Lusaka District (Zambia)                   conf=0.919  sv=+0.0215
+    Dakar Outpost (Senegal)                    conf=0.886  sv=+0.0973
+    Nampula Province (Mozambique)              conf=0.869  sv=+0.0973
+  Low-quality clinics (conf <= 0.75):
+    Oromia Regional (Ethiopia)                 conf=0.690  sv=+0.0973
+    Lindi District (Tanzania)                  conf=0.729  sv=+0.0973
+
+  Mean Shapley — high quality: +0.0896
+  Mean Shapley — low quality:  +0.0973
+  (Quality-weighted FedAvg: low-quality clinics receive proportionally less weight, limiting their impact on global model)
+
+=================================================================
+
+  💾 Results saved → fl_results.pkl
+  📋 Ledger exported → ip_token_ledger.csv
+
+  ⏱️  Total runtime: 53.7s
+  📁 Outputs:
+     fl_results.pkl      — full simulation results
+     ip_token_ledger.csv — IP attribution ledger
+     clinic_data/        — cached clinic datasets
+
+  📋 IP TOKEN LEDGER PREVIEW (first 5 rows):
+ round                       clinic_name  tokens_awarded  shapley_score  volume_score  quality_score  rarity_score
+     1           Kisumu Lakeside (Kenya)         38.5835       0.157620           1.0         0.5447        0.1911
+     1          Northern Uganda Regional         32.4378       0.068722           1.0         0.4876        0.2000
+     1 Lagos Teaching Hospital (Nigeria)         35.7537       0.095895           1.0         0.6000        0.2000
+     1         Upper West Ghana District         35.7537       0.095895           1.0         0.6000        0.2000
+     1         Kigali Reference (Rwanda)         33.7688       0.095895           1.0         0.4303        0.3122
+
+  ✅ Done.
+
+zacharythurston@Zacharys-MacBook-Pro Malaria % 
